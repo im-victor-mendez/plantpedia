@@ -2,6 +2,7 @@ import express, { json } from 'express'
 import cors from 'cors'
 import './loadEnvironment.mjs'
 import routes from './routes/index.mjs'
+import './firebase/index.mjs'
 
 const PORT = process.env.PORT || 5000
 const app = express()
