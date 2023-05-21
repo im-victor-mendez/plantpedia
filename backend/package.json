@@ -1,12 +1,16 @@
 {
   "name": "plantpedia_backend",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.mjs",
   "scripts": {
+    "start": "node index.mjs",
     "dev": "nodemon index.mjs"
   },
-  "author": "Victor Mendez",
+  "author": {
+    "name": "Victor Mendez",
+    "url": "https://www.linkedin.com/in/im-victor-mendez/"
+  },
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
