@@ -1,8 +1,8 @@
 import { getPage, getUrlPaged } from "../../constants/functions.mjs"
 import { apiToken, apiUrl } from "../../constants/values.mjs"
 
-const path = 'plants?'
-const url = `${apiUrl}${path}${apiToken}`
+const path = 'plants'
+const url = `${apiUrl}${path}?${apiToken}`
 
 /**
  * Responses with all plants with a pagination of 20 items, links and meta
