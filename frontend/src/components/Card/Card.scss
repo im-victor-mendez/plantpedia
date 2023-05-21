@@ -1,0 +1,58 @@
+@import '../../sass/colors';
+@import '../../sass/fonts';
+
+.card {
+    @include card-text;
+    background-color: $light-gray;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 20px;
+
+    width: 160px;
+    height: 273px;
+
+    * {
+        margin: 0;
+    }
+
+    img {
+        margin-top: 10px;
+
+        border-radius: 20px;
+        object-fit: cover;
+
+        width: 140px;
+        height: 100%;
+        max-width: 315px;
+        max-height: 220px;
+    }
+}
+
+.horizontal {
+    width: 335px;
+    height: 273px;
+
+    img {
+        width: 100%;
+    }
+}
+
+.medium {
+    height: 178.5px;
+
+    img {
+        height: 126px;
+    }
+}
+
+.short {
+    height: 131.5px;
+
+    img {
+        height: 79px;
+    }
+}
