@@ -4,15 +4,17 @@
 $font-family: 'Ubuntu', sans-serif;
 
 @mixin card-text {
-    color: $black;
+    h1 {
+        color: $black;
 
-    height: 23px;
-    width: 315px;
+        width: calc(100% - 20px);
 
-    font-family: $font-family;
-    font-size: 12px;
-    font-weight: 300;
-    line-height: 23px;
-    letter-spacing: 0em;
-    text-align: center;
+        font-family: $font-family;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 23px;
+        letter-spacing: 0em;
+        text-align: center;
+        margin-bottom: 10px;
+    }
 }
