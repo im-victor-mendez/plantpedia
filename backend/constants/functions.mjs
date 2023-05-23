@@ -1,3 +1,14 @@
+import { apiToken } from "./values.mjs"
+
+/**
+ * Function that returns api url with token param
+ * @param {string} url Api url
+ * @returns {string}
+ */
+export function getUrlTokened(url) {
+    return `${url}?${apiToken}`
+}
+
 /**
  * Function that returns string page as number
  * @param {Object} req Request queries
