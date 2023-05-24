@@ -52,6 +52,10 @@ $max-height-text: 109px;
         
         text-transform: capitalize;
     }
+
+    .no-value {
+        @include text($dark-yellow, 130px, 23px)
+    }
     
     .value {
         @include text($dark-green, 130px);
@@ -68,6 +72,10 @@ $max-height-text: 109px;
         @include text($black, 130px, 109px);
         
         text-transform: capitalize;
+    }
+
+    .no-value {
+        @include text($dark-yellow, 150px, 23px)
     }
     
     .value {
