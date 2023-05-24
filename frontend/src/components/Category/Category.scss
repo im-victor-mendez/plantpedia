@@ -54,7 +54,7 @@ $max-height-text: 109px;
     }
 
     .no-value {
-        @include text($dark-yellow, 130px, 23px)
+        @include text($dark-yellow, 130px, 23px);
     }
     
     .value {
@@ -75,7 +75,7 @@ $max-height-text: 109px;
     }
 
     .no-value {
-        @include text($dark-yellow, 150px, 23px)
+        @include text($dark-yellow, 150px, 23px);
     }
     
     .value {
@@ -106,7 +106,7 @@ $max-height-text: 109px;
         }
 
         .no-value {
-            @include text($dark-yellow, fit-content, 23px)
+            @include text($dark-yellow, fit-content, 23px);
         }
 
         .toggle-button-icon {
@@ -130,7 +130,7 @@ $max-height-text: 109px;
 
 .category-image {
     .title {
-        @include text($black, 140px, 23px)
+        @include text($black, 140px, 23px);
     }
 
     .value {
@@ -147,7 +147,7 @@ $max-height-text: 109px;
     padding: $padding;
 
     .value {
-        @include text($black, 295px, 23px)
+        @include text($black, 295px, 23px);
     }
 }
 
@@ -159,16 +159,21 @@ $max-height-text: 109px;
     padding: $padding;
 
     .value {
-        @include text($black, 295px, 23px)
+        @include text($black, 295px, 23px);
     }
 }
 
 .url-value {
     background-color: $light-gray;
+
     .value {
         @include text($dark-green, 295px, 23px);
 
         cursor: pointer;
         text-decoration: none;
+    }
+
+    .no-value {
+        @include text($dark-yellow, 130px, 23px);
     }
 }

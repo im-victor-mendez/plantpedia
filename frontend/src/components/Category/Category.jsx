@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import dictionary from '../../constants/dictionary'
 import useToggle from '../../hooks/toggle'
 import './Category.scss'
@@ -10,36 +11,47 @@ const className = 'category'
  * @param {any} Destructured_Props
  * @param {string} title Title of category
  * @param {string | number} value Value to display as text
+ * @param {boolean} negativeValue Boolean to indicate if value passed is a no-value. Example: 'Doesn't have' or 'No' and implement style
  * @returns {React.JSX.Element}
  */
 export function DefaultCategory({ title, value, negativeValue }) {
-  title = getCategoryTitle(title)
+  const categoryTitle = getCategoryTitle(title)
 
   return (
     <div className={`${className} default`}>
-      <h1 className='title'>{title}</h1>
+      <h1 className='title'>{categoryTitle}</h1>
       <h2 className={negativeValue ? 'no-value' : 'value'}>{value}</h2>
     </div>
   )
 }
-
+DefaultCategory.propTypes = {
+  title: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  negativeValue: PropTypes.bool
+}
 
 /**
  * Like default category, but larger :P
  * @param {any} Destructured_Props
  * @param {string} title Title of category
  * @param {string | number} value Value to display as text
+ * @param {boolean} negativeValue Boolean to indicate if value passed is a no-value. Example: 'Doesn't have' or 'No' and implement style
  * @returns {React.JSX.Element}
  */
 export function LargeCategory({ title, value, negativeValue }) {
-  title = getCategoryTitle(title)
+  const categoryTitle = getCategoryTitle(title)
 
   return (
     <div className={`${className} large`}>
-      <h1 className='title'>{title}</h1>
+      <h1 className='title'>{categoryTitle}</h1>
       <h2 className={negativeValue ? 'no-value' : 'value'}>{value}</h2>
     </div>
   )
+}
+LargeCategory.propTypes = {
+  title: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  negativeValue: PropTypes.bool
 }
 
 /**
@@ -53,7 +65,7 @@ export function LargeCategory({ title, value, negativeValue }) {
 export function ToggleCategory({ title, data }) {
   const { toggle, icon, activeToggle } = useToggle()
 
-  title = getCategoryTitle(title)
+  const categoryTitle = getCategoryTitle(title)
   
   const emptyDataCondition = (Object.keys(data).length == 0 || data.length == 0)
   const arrayCondition = data instanceof Array
@@ -61,45 +73,60 @@ export function ToggleCategory({ title, data }) {
   return (
     <div className={`${className} toggle`}>
       <div className='top'>
-        <h1 className='title'>{title}</h1>
+        <h1 className='title'>{categoryTitle}</h1>
         {emptyDataCondition ? <h2 className='no-value'>{dictionary.null}</h2> :
         <img className='toggle-button-icon' src={icon} alt="Toggle image button" onClick={activeToggle} />}
       </div>
       {(!emptyDataCondition && toggle) &&
       <div className='toggle-content'>
       {arrayCondition && data.map(item => {
-        if (title == 'sources') {
-          const type = 'default'
+        if (categoryTitle == 'sources') {
           const name = item.name
           const url = item.url
 
-          return types.value.url({ type, data: url, value: name })
+          return <Url key={`${name}-key`} url={url} value={name} />
         }
-console.log(item)
-        const title = ''
-        const value = ''
-
-        return types.large({ title, value })
       })
       }
-
-      {!arrayCondition && Object.keys(data).map()}
     </div>}
     </div>
   )
 }
+ToggleCategory.propTypes = {
+  title: PropTypes.string,
+  data: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+}
 
+/**
+ * Image Category
+ * @description With image value instead of plane text
+ * @param {any} Destructured_Props
+ * @param {string} title Url of value
+ * @param {string} image Image url to display
+ * @returns {React.JSX.Element}
+ */
 export function ImageCategory({ title, image }) {
-  title = getCategoryTitle(title)
+  const categoryTitle = getCategoryTitle(title)
   
   return (
     <div className={`${className} category-image`}>
-      <h1 className='title'>{title}</h1>
-      <img className='value' src={image} alt={`${title} image`} />
+      <h1 className='title'>{categoryTitle}</h1>
+      <img className='value' src={image} alt={`${categoryTitle} image`} />
     </div>
   )
 }
+ImageCategory.propTypes = {
+  title: PropTypes.string,
+  image: PropTypes.string
+}
 
+/**
+ * Default Value
+ * @description Returns plane text
+ * @param {any} Destructured_Props
+ * @param {string} value Value to display
+ * @returns {React.JSX.Element}
+ */
 export function DefaultValue({ value }) {
   return (
     <div className={`${className} default-value`}>
@@ -107,7 +134,17 @@ export function DefaultValue({ value }) {
     </div>
   )
 }
+DefaultValue.propTypes = {
+  value: PropTypes.string
+}
 
+/**
+ * Short Value
+ * @description Default Value but shorter :P
+ * @param {any} Destructured_Props
+ * @param {string} value Value to display as plane text
+ * @returns {React.JSX.Element}
+ */
 export function ShortValue({ value }) {
   return (
     <div className={`${className} short-value`}>
@@ -115,15 +152,29 @@ export function ShortValue({ value }) {
     </div>
   )
 }
+ShortValue.propTypes = {
+  url: PropTypes.string,
+  value: PropTypes.string
+}
 
-export function Url({ data, value }) {
-  const noUrlStyle = (data == null) ? { color: `#333333` } : {}
-
+/**
+ * Url Category Value
+ * @description With link value instead of plane text
+ * @param {any} Destructured_Props
+ * @param {string} url Url of value
+ * @param {string} value Name of url to display
+ * @returns {React.JSX.Element}
+ */
+export function Url({ url, value }) {
   return (
     <div className={`${className} url-value`}>
-      <a className='value' href={data} target='_blank' rel='noreferrer' style={noUrlStyle}>{value}</a>
+      <a className={url ? 'value' : 'no-value'} href={url} target='_blank' rel='noreferrer'>{value}</a>
     </div>
   )
+}
+Url.propTypes = {
+  url: PropTypes.string,
+  value: PropTypes.string
 }
 
 export default DefaultCategory
