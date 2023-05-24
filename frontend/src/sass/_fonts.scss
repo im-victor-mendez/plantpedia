@@ -3,17 +3,20 @@
 
 $font-family: 'Ubuntu', sans-serif;
 
+@mixin medium-font {
+    font-family: $font-family;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+}
+
 @mixin card-text {
     h1 {
         color: $black;
 
         width: calc(100% - 20px);
-
-        font-family: $font-family;
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 23px;
-        letter-spacing: 0em;
+        @include medium-font();
         text-align: center;
         margin-bottom: 10px;
     }
