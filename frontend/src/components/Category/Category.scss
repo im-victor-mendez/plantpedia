@@ -44,7 +44,7 @@ $max-height-text: 109px;
     max-height: $max-height;
 }
 
-.default {
+.category-default {
     height: calc($min-height - $total-padding);
 
     .title {
@@ -64,7 +64,7 @@ $max-height-text: 109px;
     }
 }
 
-.large {
+.category-large {
     height: 100%;
     max-height: calc($max-height - $total-padding);
     
@@ -85,7 +85,7 @@ $max-height-text: 109px;
     }
 }
 
-.toggle {
+.category-toggle {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -115,7 +115,7 @@ $max-height-text: 109px;
     }
 }
 
-.toggle-content {
+.category-toggle-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -142,7 +142,7 @@ $max-height-text: 109px;
     }
 }
 
-.default-value {
+.value-default {
     background-color: $light-gray;
 
     width: calc($width - $total-padding);
@@ -154,7 +154,7 @@ $max-height-text: 109px;
     }
 }
 
-.large-value {
+.value-large {
     background-color: $light-gray;
 
     height: 100%;
@@ -165,7 +165,7 @@ $max-height-text: 109px;
     }
 }
 
-.short-value {
+.value-short {
     background-color: $light-gray;
 
     width: calc(147.5px - $total-padding);
@@ -177,7 +177,7 @@ $max-height-text: 109px;
     }
 }
 
-.url-value {
+.value-url {
     background-color: $light-gray;
 
     .value {

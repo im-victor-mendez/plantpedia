@@ -18,7 +18,7 @@ export function DefaultCategory({ title, value, negativeValue }) {
   const categoryTitle = getCategoryTitle(title)
 
   return (
-    <div className={`${className} default`}>
+    <div className={`${className} ${className}-default`}>
       <h1 className='title'>{categoryTitle}</h1>
       <h2 className={negativeValue ? 'no-value' : 'value'}>{value}</h2>
     </div>
@@ -42,7 +42,7 @@ export function LargeCategory({ title, value, negativeValue }) {
   const categoryTitle = getCategoryTitle(title)
 
   return (
-    <div className={`${className} large`}>
+    <div className={`${className} ${className}-large`}>
       <h1 className='title'>{categoryTitle}</h1>
       <h2 className={negativeValue ? 'no-value' : 'value'}>{value}</h2>
     </div>
@@ -82,14 +82,14 @@ export function ToggleCategory({ title, data }) {
   }
   
   return (
-    <div className={`${className} toggle`}>
+    <div className={`${className} ${className}-toggle`}>
       <div className='top'>
         <h1 className='title'>{categoryTitle}</h1>
         {conditions.empty_data ? <h2 className='no-value'>{dictionary.null}</h2> :
         <img className='toggle-button-icon' src={icon} alt="Toggle image button" onClick={activeToggle} />}
       </div>
 
-      {(!conditions.empty_data && toggle) && <div className='toggle-content'>
+      {(!conditions.empty_data && toggle) && <div className='category-toggle-content'>
         {conditions.is_array && data.map(item => {
           if (conditions.sources) return <Url
             key={`${item.name}-${data.indexOf(item)}-key`}
@@ -166,7 +166,7 @@ ImageCategory.propTypes = {
  */
 export function DefaultValue({ value }) {
   return (
-    <div className={`${className} default-value`}>
+    <div className={`${className} value-default`}>
       <p className='value'>{value}</p>
     </div>
   )
@@ -184,7 +184,7 @@ DefaultValue.propTypes = {
  */
 export function LargeValue({ value }) {
   return (
-    <div className={`${className} large-value`}>
+    <div className={`${className} value-large`}>
       <p className='value'>{value}</p>
     </div>
   )
@@ -202,7 +202,7 @@ LargeValue.propTypes = {
  */
 export function ShortValue({ value }) {
   return (
-    <div className={`${className} short-value`}>
+    <div className={`${className} value-short`}>
       <p className='value'>{value}</p>
     </div>
   )
@@ -222,7 +222,7 @@ ShortValue.propTypes = {
  */
 export function Url({ url, value }) {
   return (
-    <div className={`${className} url-value`}>
+    <div className={`${className} value-url`}>
       <a className={url ? 'value' : 'no-value'} href={url} target='_blank' rel='noreferrer'>{value}</a>
     </div>
   )
