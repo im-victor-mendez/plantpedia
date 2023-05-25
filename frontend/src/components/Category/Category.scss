@@ -1,0 +1,193 @@
+@import '../../sass/colors';
+@import '../../sass/fonts';
+@import '../../sass/style.scss';
+
+$gap: 10px;
+
+$border-radius: $border-radius-small;
+
+$padding: 10px;
+$total-padding: $padding * 2;
+
+$width: 315px;
+
+$min-height: 43px;
+$max-height: 129px;
+
+$toggle-max-height: 172px;
+
+$max-height-text: 109px;
+
+.category {
+    background-color: $white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    
+    padding: $padding;
+    border-radius: $border-radius;
+    
+    width: calc($width - $total-padding);
+
+    * {
+        margin: 0
+    }
+}
+
+@mixin text($color, $max-width, $max-height: 23px) {
+    @include medium-font;
+
+    color: $color;
+
+    max-width: $max-width;
+    max-height: $max-height;
+}
+
+.default {
+    height: calc($min-height - $total-padding);
+
+    .title {
+        @include text($black, 140px);
+        
+        text-transform: capitalize;
+    }
+
+    .no-value {
+        @include text($dark-yellow, 130px, 23px);
+    }
+    
+    .value {
+        @include text($dark-green, 130px);
+        
+        text-align: end;
+    }
+}
+
+.large {
+    height: 100%;
+    max-height: calc($max-height - $total-padding);
+    
+    .title {
+        @include text($black, 130px, 109px);
+        
+        text-transform: capitalize;
+    }
+
+    .no-value {
+        @include text($dark-yellow, 150px, 23px);
+    }
+    
+    .value {
+        @include text($dark-green, 150px, 109px);
+        
+        text-align: end;
+    }
+}
+
+.toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $gap;
+
+    max-height: calc($toggle-max-height - $total-padding);
+
+    .top {
+        display: flex;
+        justify-content: space-between;
+
+        width: 100%;
+
+        .title {
+            @include text($black, 231px, 23px);
+
+            text-transform: capitalize;
+        }
+
+        .no-value {
+            @include text($dark-yellow, fit-content, 23px);
+        }
+
+        .toggle-button-icon {
+            width: 23.88px;
+        }
+    }
+}
+
+.toggle-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: $gap;
+
+    width: 100%;
+
+    border-radius: $border-radius;
+
+    overflow: auto;
+}
+
+.category-image {
+    align-items: center;
+    .title {
+        @include text($black, 140px, 109px);
+    }
+
+    .value {
+        object-fit: cover;
+
+        width: 130px;
+        height: 23px;
+    }
+}
+
+.default-value {
+    background-color: $light-gray;
+
+    width: calc($width - $total-padding);
+    height: calc($min-height - $total-padding);
+    padding: $padding;
+
+    .value {
+        @include text($black, 295px, 23px);
+    }
+}
+
+.large-value {
+    background-color: $light-gray;
+
+    height: 100%;
+    max-height: calc($max-height - $total-padding);
+
+    .value {
+        @include text($dark-green, 295px, 109px);
+    }
+}
+
+.short-value {
+    background-color: $light-gray;
+
+    width: calc(147.5px - $total-padding);
+    height: calc($min-height - $total-padding);
+    padding: $padding;
+
+    .value {
+        @include text($black, 295px, 23px);
+    }
+}
+
+.url-value {
+    background-color: $light-gray;
+
+    .value {
+        @include text($dark-green, 295px, 23px);
+
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .no-value {
+        @include text($dark-yellow, 130px, 23px);
+    }
+}

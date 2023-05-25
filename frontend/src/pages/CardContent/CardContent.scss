@@ -1,0 +1,26 @@
+@import '../../sass/colors';
+@import '../../sass/style.scss';
+
+$card-content-width: 335px;
+
+$card-content-padding: 10px;
+$total-padding: $card-content-padding * 2;
+
+.card-content {
+    background-color: $light-gray;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    padding: $card-content-padding;
+    border-radius: $border-radius-large;
+
+    width: calc($card-content-width - $total-padding);
+
+    img {
+        border-radius: $border-radius-large;
+
+        width: 100%;
+    }
+}

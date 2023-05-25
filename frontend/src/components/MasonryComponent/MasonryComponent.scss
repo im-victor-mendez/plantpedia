@@ -1,0 +1,9 @@
+.masonry-grid {
+    display: flex;
+    gap: 15px;
+    width: auto;
+}
+  
+.masonry-grid_column > div {
+    margin-bottom: 20px;
+}
