@@ -11,6 +11,14 @@ $font-family: 'Ubuntu', sans-serif;
     letter-spacing: 0em;
 }
 
+@mixin bold-font {
+    font-family: $font-family;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+}
+
 @mixin card-text {
     h1 {
         color: $black;
@@ -20,4 +28,13 @@ $font-family: 'Ubuntu', sans-serif;
         text-align: center;
         margin-bottom: 10px;
     }
+}
+
+@mixin title($color, $max-width, $max-height: 23px) {
+    @include bold-font();
+
+    color: $color;
+
+    max-width: $max-width;
+    max-height: $max-height;
 }
