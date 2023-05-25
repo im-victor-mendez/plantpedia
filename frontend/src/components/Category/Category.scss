@@ -129,11 +129,14 @@ $max-height-text: 109px;
 }
 
 .category-image {
+    align-items: center;
     .title {
-        @include text($black, 140px, 23px);
+        @include text($black, 140px, 109px);
     }
 
     .value {
+        object-fit: cover;
+
         width: 130px;
         height: 23px;
     }
@@ -148,6 +151,17 @@ $max-height-text: 109px;
 
     .value {
         @include text($black, 295px, 23px);
+    }
+}
+
+.large-value {
+    background-color: $light-gray;
+
+    height: 100%;
+    max-height: calc($max-height - $total-padding);
+
+    .value {
+        @include text($dark-green, 295px, 109px);
     }
 }
 

@@ -66,29 +66,66 @@ export function ToggleCategory({ title, data }) {
   const { toggle, icon, activeToggle } = useToggle()
 
   const categoryTitle = getCategoryTitle(title)
-  
-  const emptyDataCondition = (Object.keys(data).length == 0 || data.length == 0)
-  const arrayCondition = data instanceof Array
+
+  const conditions = {
+    'empty_data': (Object.keys(data).length == 0 || data.length == 0),
+    'is_array': data instanceof Array,
+    'is_object': data instanceof Object,
+    'links': title == 'links',
+    'main_species': title == 'main_species',
+    'genus': title == 'genus',
+    'family': title == 'family',
+    'species': title == 'species',
+    'subspecies': title == 'subspecies',
+    'varieties': title == 'varieties',
+    'sources': title == 'sources',
+  }
   
   return (
     <div className={`${className} toggle`}>
       <div className='top'>
         <h1 className='title'>{categoryTitle}</h1>
-        {emptyDataCondition ? <h2 className='no-value'>{dictionary.null}</h2> :
+        {conditions.empty_data ? <h2 className='no-value'>{dictionary.null}</h2> :
         <img className='toggle-button-icon' src={icon} alt="Toggle image button" onClick={activeToggle} />}
       </div>
-      {(!emptyDataCondition && toggle) &&
-      <div className='toggle-content'>
-      {arrayCondition && data.map(item => {
-        if (categoryTitle == 'sources') {
-          const name = item.name
-          const url = item.url
 
-          return <Url key={`${name}-key`} url={url} value={name} />
-        }
-      })
-      }
-    </div>}
+      {(!conditions.empty_data && toggle) && <div className='toggle-content'>
+        {conditions.is_array && data.map(item => {
+          if (conditions.sources) return <Url
+            key={`${item.name}-${data.indexOf(item)}-key`}
+            url={item.url}
+            value={item.name}
+          />
+
+          if (conditions.species) return <ImageCategory
+            key={`${item.name}-${data.indexOf(item)}-key`}
+            title={item.common_name || item.scientific_name}
+            image={item.image_url}
+          />
+
+          if (conditions.subspecies || conditions.varieties) return <LargeValue
+            key={`${item.name}-${data.indexOf(item)}-key`}
+            value={item.common_name || item.scientific_name}
+          />
+        })}
+
+        {conditions.is_object && Object.keys(data).map(item => {
+          const key = `${item}-key`
+          const value = data[item]
+
+          if (conditions.links) return <Url key={key} url={value} value={item} />
+        })}
+
+        {conditions.main_species && <ImageCategory
+          key={`${data.common_name}-image_category-key`}
+          title={data.common_name}
+          image={data.images.fruit[0].image_url || data.images.bark[0].image_url}
+        />}
+
+        {conditions.genus && <LargeValue key={`${data.name}-key`} value={data.name} />}
+
+        {conditions.family && <LargeValue key={`${data.name}-key`} value={data.name} />}
+      </div>}
     </div>
   )
 }
@@ -135,6 +172,24 @@ export function DefaultValue({ value }) {
   )
 }
 DefaultValue.propTypes = {
+  value: PropTypes.string
+}
+
+/**
+ * Large Value
+ * @description Default Value but larger :P
+ * @param {any} Destructured_Props
+ * @param {string} value Value to display
+ * @returns {React.JSX.Element}
+ */
+export function LargeValue({ value }) {
+  return (
+    <div className={`${className} large-value`}>
+      <p className='value'>{value}</p>
+    </div>
+  )
+}
+LargeValue.propTypes = {
   value: PropTypes.string
 }
 
