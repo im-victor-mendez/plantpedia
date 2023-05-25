@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { getCardContent } from "../../api/getPageContent"
 import { useParams } from "react-router"
 import { ListCategories } from "../../layout/List/List"
+import { BackWithName } from '../../components/TopBar/TopBar'
 
 /**
  * Card content
@@ -11,6 +12,7 @@ import { ListCategories } from "../../layout/List/List"
  */
 function CardContent() {
     const [data, setData] = useState()
+    const name = data ? data.data.common_name : ''
 
     const params = useParams()
     const { topicContent, cardContent } = params
@@ -22,17 +24,18 @@ function CardContent() {
         .then(data => {
             setData(data)
         })
-    }, [])
+    }, [path])
     
-    if (data) return (
+    if (data) return (<>
+        <BackWithName name={name} />
+
         <article id={cardContent} className='card-content'>
-            {/* <TopBar/> */}
             <img
                 src={data.data.image_url}
-                alt={`${data.data.common_name} image`}
+                alt={`${name} image`}
             />
             <ListCategories categories={data.data} />
         </article>
-    )
+    </>)
 }
 export default CardContent
