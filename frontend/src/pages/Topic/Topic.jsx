@@ -1,34 +1,36 @@
 import { useEffect, useState } from "react"
-import { useParams, useSearchParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { getPageContent } from "../../api/getPageContent"
 import List from "../../layout/List/List"
+import Loading from "../../components/Loading/Loading"
 
 function Topic() {
-    const [searchParams] = useSearchParams()
-    const params = useParams()
+  const [loading, setLoading] = useState(true)
+  const [list, setList] = useState([])
 
-    const [list, setList] = useState([])
-    const [page, setPage] = useState(searchParams.get('page'))
-    
-    const { topicContent } = params
-    const parentPath = `/${topicContent}`
-    
-    useEffect(() => {
-      getPageContent(parentPath, parseInt(page))
-      .then(data => {
-        const dataList = data.data
-        
-        setList(dataList)
-      })
-    }, [page])
+  const params = useParams()
+  const { topicContent } = params
+  const topicPath = `/${topicContent}`
+  
+  useEffect(() => {
+    getPageContent(topicPath)
+    .then(data => {
+      setLoading(false)
 
-    return (
-        <article id={topicContent} className="topic">
-            <List
-                list={list}
-                parentPath={parentPath}
-            />
-        </article>
-    )
+      const dataList = data.data
+      setList(dataList)
+    })
+  }, [topicPath])
+
+  if (loading) return <Loading/>
+
+  return (
+      <article id={topicContent} className="topic">
+        <List
+          list={list}
+          parentPath={topicPath}
+        />
+      </article>
+  )
 }
 export default Topic
