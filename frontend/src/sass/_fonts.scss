@@ -3,9 +3,9 @@
 
 $font-family: 'Ubuntu', sans-serif;
 
-@mixin medium-font {
+@mixin medium-font($font-size: 20px) {
     font-family: $font-family;
-    font-size: 20px;
+    font-size: $font-size;
     font-weight: 500;
     line-height: 23px;
     letter-spacing: 0em;
@@ -37,4 +37,12 @@ $font-family: 'Ubuntu', sans-serif;
 
     max-width: $max-width;
     max-height: $max-height;
+}
+
+@mixin button-text() {
+    color: $black;
+    
+    @include medium-font(30px);
+
+    text-align: center;
 }
