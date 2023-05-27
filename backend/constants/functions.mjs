@@ -3,10 +3,21 @@ import { apiToken } from "./values.mjs"
 /**
  * Function that returns api url with token param
  * @param {string} url Api url
+ * @example getUrlTokenedAsParam(url): 'api/endpoint?token=value'
  * @returns {string}
  */
-export function getUrlTokened(url) {
+export function getUrlTokenedAsParam(url) {
     return `${url}?${apiToken}`
+}
+
+/**
+ * Function that returns api url with token param
+ * @param {string} url Api url
+ * @example getUrlTokenedAsConstant(url): 'api/endpoint?variable=value&token=value'
+ * @returns {string}
+ */
+export function getUrlTokenedAsConstant(url) {
+    return `${url}&${apiToken}`
 }
 
 /**
