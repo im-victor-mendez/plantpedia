@@ -1,8 +1,14 @@
 import './App.scss'
 import { Route, Routes } from "react-router-dom";
 import Paths from "./constants/Paths";
+import { useEffect } from 'react';
+import { removeDomLoader } from './functions/initApp';
 
 function App() {
+  useEffect(() => {
+    removeDomLoader()
+  }, [])
+  
   return (
     <main id="App">
       <Routes>

@@ -7,7 +7,52 @@
     <title>Plantpedia</title>
   </head>
   <body>
+    <svg id="dom-loading-icon" fill="none" height="195.78" viewBox="0 0 24 24" width="187.5" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#333333" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <path d="m8 18c11.9545 0 12.9173-10.17083 12.9935-15.00334.0088-.55222-.4535-.99765-1.0057-.98751-16.9878.312-16.9878 8.54765-16.9878 15.99085v4" class="leaf-1"></path>
+      <path d="m3 18s0-6 8-7" class="leaf-2"></path>
+      </g>
+    </svg>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    
+    <style>
+      body {
+        display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      }
+
+      #dom-loading-icon .leaf-1 {
+        stroke-dashoffset: 115.28263092041016px;
+        stroke-dasharray: 57.64131546020508px;
+        -webkit-transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+                transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+      }
+
+      #dom-loading-icon.active .leaf-1 {
+        stroke-dashoffset: 172.92394638061523px;
+      }
+
+      #dom-loading-icon .leaf-2 {
+        stroke-dashoffset: 27.19704818725586px;
+        stroke-dasharray: 13.59852409362793px;
+        -webkit-transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s;
+                transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s;
+      }
+
+      #dom-loading-icon.active .leaf-2 {
+        stroke-dashoffset: 40.79557228088379px;
+      }
+    </style>
+
+    <script>
+      const loadingIcon = document.getElementById('dom-loading-icon')
+
+      const interval = setInterval(() => {
+        loadingIcon.classList.toggle('active')
+      }, 1000)
+      </script>
+      <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
