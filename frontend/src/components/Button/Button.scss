@@ -1,0 +1,53 @@
+@import '../../sass/colors';
+@import '../../sass/fonts';
+@import '../../sass/style';
+
+$default-width: 138px;
+
+$short-width: 69px;
+$short-content: 30.84px;
+
+$padding: 20px;
+
+.button {
+    background-color: $white;
+
+    @include button-text;
+
+    border: 0px;
+    border-radius: $border-radius-large;
+
+
+    width: 138px;
+    height: 74px;
+
+    padding: 20px;
+
+    &:hover {
+        background-color: $green;
+        color: $white;
+    }
+}
+
+.button-short {
+    width: $short-width;
+
+    * {
+        border-radius: $border-radius-small;
+
+        width: 100%;
+        max-width: $short-content;
+        height: 100%;
+        max-height: $short-content;
+    }
+}
+
+.button-large {
+    width: 207px;
+}
+
+.button-fixed {
+    min-width: $short-width;
+    width: fit-content;
+    max-width: 100%;
+}

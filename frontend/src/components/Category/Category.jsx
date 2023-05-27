@@ -63,7 +63,7 @@ LargeCategory.propTypes = {
  * @returns {React.JSX.Element}
  */
 export function ToggleCategory({ title, data }) {
-  const { toggle, icon, activeToggle } = useToggle()
+  const { toggle, Icon, activeToggle } = useToggle()
 
   const categoryTitle = getCategoryTitle(title)
 
@@ -86,7 +86,7 @@ export function ToggleCategory({ title, data }) {
       <div className='top'>
         <h1 className='title'>{categoryTitle}</h1>
         {conditions.empty_data ? <h2 className='no-value'>{dictionary.null}</h2> :
-        <img className='toggle-button-icon' src={icon} alt="Toggle image button" onClick={activeToggle} />}
+        <Icon className='toggle-button-icon' onClick={activeToggle} />}
       </div>
 
       {(!conditions.empty_data && toggle) && <div className='category-toggle-content'>

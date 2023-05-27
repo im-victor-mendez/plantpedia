@@ -3,6 +3,11 @@ import { useEffect, useState } from "react"
 import { getPageContent } from "../../api/getPageContent"
 import Card from "../../components/Card/Card"
 
+/**
+ * Find By layout
+ * @description To use only to Find By list display
+ * @returns {React.JSX.Element}
+ */
 function FindBy() {
   const [sections, setSections] = useState([])
 

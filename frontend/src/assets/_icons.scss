@@ -1,0 +1,44 @@
+@mixin icon-styles {
+    @include icon();
+    @include large-light();
+    @include large-medium();
+    @include large-bold();
+}
+
+@mixin icon {
+    .icon {
+        width: 42.14;
+        height: auto;
+    }
+}
+
+@mixin large {
+    width: 187.5px;
+    height: 195.78px;
+}
+
+@mixin large-light {
+    .icon.large-light {
+        @include large();
+
+        path {
+            stroke-width: 0.5px
+        }
+    }
+}
+
+@mixin large-medium {
+    .icon.large-medium {
+        @include large();
+
+        path {
+            stroke-width: 1px;
+        }
+    }
+}
+
+@mixin large-bold {
+    .icon.large-bold {
+        @include large();
+    }
+}
