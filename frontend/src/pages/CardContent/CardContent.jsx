@@ -4,6 +4,7 @@ import { getCardContent } from "../../api/getPageContent"
 import { useParams } from "react-router"
 import { ListCategories } from "../../layout/List/List"
 import { BackWithName } from '../../components/TopBar/TopBar'
+import Loading from '../../components/Loading/Loading'
 
 /**
  * Card content
@@ -26,7 +27,9 @@ function CardContent() {
         })
     }, [path])
     
-    if (data) return (<>
+    if (!data) return <Loading className="large-bold"/>
+    
+    return (<>
         <BackWithName name={name} />
 
         <article id={cardContent} className='card-content'>
