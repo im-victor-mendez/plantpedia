@@ -135,6 +135,7 @@ $max-height-text: 109px;
     }
 
     .value {
+        border-radius: $border-radius-large;
         object-fit: cover;
 
         width: 130px;

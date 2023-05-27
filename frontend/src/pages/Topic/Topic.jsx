@@ -7,6 +7,11 @@ import Loading from "../../components/Loading/Loading"
 import { FixedButton, ShortButton } from "../../components/Button/Button"
 import { ReactComponent as Return } from '../../assets/svg/return.svg'
 
+/**
+ * Topic Page template
+ * @description To use to display lists of api snippets, like Genus, Plants, Species, Zones and Distributions
+ * @returns {React.JSX.Element}
+ */
 function Topic() {
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)

@@ -55,3 +55,6 @@ export function BackWithName({ name }) {
         <h1 className='top-bar-name'>{name}</h1>
     </Back>
 }
+BackWithName.propTypes = {
+    name: PropTypes.string
+}
