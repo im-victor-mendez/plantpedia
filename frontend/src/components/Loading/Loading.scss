@@ -1,0 +1,5 @@
+@import '../../assets/icons';
+
+.loading {
+    @include icon-styles();
+}

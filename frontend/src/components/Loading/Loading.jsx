@@ -1,13 +1,16 @@
+import './Loading.scss'
 import { useEffect, useState } from 'react'
 import '../../animations/leaf.scss'
 import {ReactComponent as Leaf} from '../../assets/svg/leaf.svg'
+import PropTypes from 'prop-types'
 
 /**
  * Loading infinite animation
  * @description Infinite loop animation of black leaf icon
+ * @param {string} className Class name to set into icon to get defines style by Figma file
  * @returns {React.JSX.Element}
  */
-function Loading() {
+function Loading({ className = '' }) {
   const [active, setActive] = useState(true)
 
   useEffect(() => {
@@ -19,14 +22,17 @@ function Loading() {
   })
   
   return (
-    <div className='loading'>
+    <div className={`loading`}>
       <Leaf
-        className={active ? 'active' : ''}
+        className={active ? `icon ${className} active` : `icon ${className}`}
         width='42.14'
         height='44'
       />
     </div>
   )
+}
+Loading.propTypes = {
+  className: PropTypes.string
 }
 
 export default Loading
