@@ -44,10 +44,13 @@ export async function getPlant(req, res) {
  */
 export async function searchPlant(req, res) {
     const { q } = req.query
+    const page = getPage(req)
 
     const plantUrl = `${url}/search?q=${q}`
+    
+    const urlPaged = getUrlPaged(getUrlTokenedAsConstant(plantUrl), page)
 
-    const response = await fetch(getUrlTokenedAsConstant(plantUrl))
+    const response = await fetch(urlPaged)
     const data = await response.json()
 
     res.send(data)
