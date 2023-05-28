@@ -1,5 +1,8 @@
 export function removeDomLoader() {
-    document.body.style = null
+    const bodyStyle = document.body.style
+    bodyStyle.justifyContent = ''
+    bodyStyle.alignItems = ''
+
     const domLoadingIcon = document.getElementById('dom-loading-icon')
     if (domLoadingIcon) domLoadingIcon.remove()
 }
