@@ -3,7 +3,17 @@
 
 $font-family: 'Ubuntu', sans-serif;
 
-@mixin medium-font($font-size: 20px) {
+@mixin regular-font($font-size: 20px, $color: $black) {
+    color: $color;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+}
+
+@mixin medium-font($font-size: 20px, $color: $black) {
+    color: $color;
     font-family: $font-family;
     font-size: $font-size;
     font-weight: 500;
@@ -11,9 +21,10 @@ $font-family: 'Ubuntu', sans-serif;
     letter-spacing: 0em;
 }
 
-@mixin bold-font {
+@mixin bold-font($font-size: 20px, $color: $black) {
+    color: $color;
     font-family: $font-family;
-    font-size: 20px;
+    font-size: $font-size;
     font-weight: 700;
     line-height: 23px;
     letter-spacing: 0em;
