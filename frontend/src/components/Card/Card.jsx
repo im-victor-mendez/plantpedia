@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './Card.scss'
 import PropTypes from 'prop-types'
+import { NoImageFixed } from '../NoImage/NoImage'
 
 /**
  * Card Component
@@ -43,18 +44,19 @@ export function CardTextFixed({ type, image, name, path }) {
 
   useEffect(() => {
     const textElementHeight = textRef.current.clientHeight
-    const condition = (textElementHeight < 52 && textElementHeight > 23)
+    const condition = (textElementHeight > 23)
 
-    setTextHeight(condition ? 52 + 20 : textElementHeight)
+    setTextHeight(!condition ? 0 : textElementHeight + 10)
   }, [textHeight])
 
   return (
     <div id={name} className={`${type} card text-fixed`} onClick={() => navigateTo(path)}>
-      {textHeight && <img
+      {(textHeight >= 0 && image != null) ? <img
         src={image}
         alt={`${image} image`}
         style={{ height: `calc(100% - ${textHeight}px)` }}
-      />}
+      /> : <NoImageFixed textHeight={textHeight} />
+      }
       <h1 ref={textRef}>{name}</h1>
     </div>
   )

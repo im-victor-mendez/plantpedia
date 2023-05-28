@@ -1,0 +1,16 @@
+@import '../../sass/colors';
+
+.no-image {
+    background-color: $gray;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 20px;
+
+    width: 140px;
+    height: 100%;
+    max-width: 315px;
+    max-height: 220px;
+}
