@@ -1,3 +1,19 @@
+.topic {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    height: 100%;
+
+    .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: inherit;
+    }
+}
+
 .load-buttons {
     display: flex;
     justify-content: space-evenly;
