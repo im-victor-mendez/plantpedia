@@ -24,3 +24,11 @@ $height-icon: 50px;
         overflow: auto;
     }
 }
+
+.top-bar.default,
+.top-bar.opened {
+    svg {
+        width: 42.14px;
+        height: auto;
+    }
+}
