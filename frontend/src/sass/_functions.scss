@@ -1,0 +1,3 @@
+@function get-real-size($size, $padding) {
+    @return calc($size - ($padding * 2));
+}

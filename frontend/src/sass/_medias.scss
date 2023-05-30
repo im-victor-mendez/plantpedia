@@ -1,0 +1,28 @@
+@import './functions';
+@import './style';
+
+@mixin media-width-414px() {
+    @media (max-width: 414px) {
+        #App {
+           width: get-real-size(100%, $app-padding);
+        }
+
+        #home,
+        .topic {
+            .top-bar {
+                width: 100%;
+                max-width: none;
+            }
+        }
+
+        .topic {
+            .search {
+                max-width: none;
+
+                input {
+                    width: auto;
+                }
+            }
+        }
+    }
+}

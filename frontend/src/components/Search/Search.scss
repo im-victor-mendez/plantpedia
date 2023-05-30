@@ -29,7 +29,7 @@ $vertical-padding: 15px;
         @include regular-font();
         outline: none;
 
-        width: 235px;
+        max-width: 235px;
         height: 40px;
         border: 0px;
         padding: 0px;
