@@ -1,0 +1,43 @@
+@import '../../sass/colors';
+@import '../../sass/style';
+@import '../../sass/fonts';
+
+$height-nav-bar: 46px;
+$size-scroll: 0px;
+
+.nav-bar {
+    display: flex;
+    gap: 20px;
+
+    border-radius: $border-radius-small;
+    width: 100%;
+    height: calc($height-nav-bar + $size-scroll);
+
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+        width: $size-scroll;
+        height: $size-scroll;
+    }
+}
+
+.nav-bar > .nav-link {
+    @include regular-font(20px, $dark-gray);
+
+    background-color: $light-gray;
+
+    border-radius: $border-radius-small;
+    padding: 12px 20px;
+    width: auto;
+    height: calc(46px - 12px * 2);
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    
+}
+
+.nav-bar > .nav-link.active {
+    background-color: $green;
+    color: $light-gray;
+}
