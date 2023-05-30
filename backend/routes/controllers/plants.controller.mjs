@@ -1,3 +1,4 @@
+import fetch from 'node-fetch'
 import { getPage, getUrlPaged, getUrlTokenedAsParam, getUrlTokenedAsConstant } from "../../constants/functions.mjs"
 import { apiUrl } from "../../constants/values.mjs"
 
