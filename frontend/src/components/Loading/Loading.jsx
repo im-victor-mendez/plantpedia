@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 /**
  * Loading infinite animation
  * @description Infinite loop animation of black leaf icon
- * @param {string} className Class name to set into icon to get defines style by Figma file
+ * @param {string} className Class name to set style from _icons style file
  * @returns {React.JSX.Element}
  */
 function Loading({ className = '' }) {
