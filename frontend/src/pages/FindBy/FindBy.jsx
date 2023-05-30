@@ -22,7 +22,14 @@ function FindBy() {
       {sections.map(section => {
         const { name, type, image, path } = section
 
-        return <Card key={`${name}-key`} id={`${name}-id`} type={type} path={path} image={image} name={name} />
+        return <Card
+          key={`${name}-key`}
+          id={`${name}-id`}
+          type={type}
+          path={path}
+          image={image}
+          name={name}
+        />
       })}
     </article>
   )

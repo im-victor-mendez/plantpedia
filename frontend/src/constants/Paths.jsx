@@ -1,5 +1,6 @@
 import CardContent from "../pages/CardContent/CardContent"
 import FindBy from "../pages/FindBy/FindBy"
+import Home from "../pages/Home/Home"
 import Landing from "../pages/Landing/Landing"
 import Topic from "../pages/Topic/Topic"
 
@@ -11,13 +12,8 @@ const Paths = Object.freeze([
     },
     {
         name: 'home',
-        path: '/home',
-        element: <>Home Page to develop</>
-    },
-    {
-        name: 'findBy',
-        path: '/findby',
-        element: <FindBy/>
+        path: '/home/*',
+        element: <Home/>
     },
     {
         name: 'topicContent',
@@ -29,6 +25,33 @@ const Paths = Object.freeze([
         path: '/:topicContent/:cardContent',
         element: <CardContent/>
     },
+])
+
+export const HomePaths = Object.freeze([
+    {
+        name: 'forYou',
+        display: 'For You',
+        path: 'foryou',
+        // element: <ForYou/>
+    },
+    {
+        name: 'discover',
+        display: 'Discover',
+        path: 'discover',
+        // element: <Discover/>
+    },
+    {
+        name: 'aroundYou',
+        display: 'Around You',
+        path: 'aroundyou',
+        // element: <AroundYou/>
+    },
+    {
+        name: 'findby',
+        display: 'Find By',
+        path: 'findby',
+        element: <FindBy/>
+    }
 ])
 
 export default Paths

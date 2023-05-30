@@ -33,7 +33,7 @@ $padding: 10px;
 }
 
 .horizontal {
-    width: 335px;
+    width: calc(335px - $padding * 2);
 
     img {
         width: 100%;
