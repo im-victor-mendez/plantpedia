@@ -7,6 +7,8 @@ import Loading from "../../components/Loading/Loading"
 import { FixedButton, ShortButton } from "../../components/Button/Button"
 import { ReactComponent as Return } from '../../assets/svg/return.svg'
 import Search from '../../components/Search/Search'
+import { BackWithName } from '../../components/TopBar/TopBar'
+import Broken from '../../components/Broken/Broken'
 
 /**
  * Topic Page template
@@ -20,6 +22,7 @@ function Topic() {
   const path = `/${topicContent}`
 
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
   const [topicContentPath, setTopicContentPath] = useState('')
   const [page, setPage] = useState(1)
   const [availablePages, setAvailablePages] = useState()
@@ -27,10 +30,12 @@ function Topic() {
   
   useEffect(() => {
     setLoading(true)
+    setError(false)
 
     if (topicContentPath.length >= 1 && topicContentPath != '')
     getSearchPageContent(`${path}/${topicContentPath}`, page)
     .then(data => {
+      if (data.error) return setError(true)
       setLoading(false)
 
       const dataList = data.data
@@ -44,6 +49,7 @@ function Topic() {
     else
     getPageContent(path, page)
     .then(data => {
+      if (data.error) return setError(true)
       setLoading(false)
       
       const dataList = data.data
@@ -73,23 +79,26 @@ function Topic() {
 
   return (
       <article id={topicContent} className="topic">
-        <Search
-          search={setTopicContentPath}
-        />
-        {loading ? <Loading className="large-bold"/> : <>
-          <List
-            list={list}
-            parentPath={path}
+        <BackWithName name={topicContent} />
+        {error ? <Broken message={`Page in development 👷‍♂️`}/> : <>
+          <Search
+            search={setTopicContentPath}
           />
-          <section className="load-buttons">
-            {page > 1 && <ShortButton onClick={getPreviousData}>
-              <Return/>
-            </ShortButton>}
-            {(availablePages > 1 && page < availablePages) &&
-            <FixedButton onClick={getMoreData}>
-              Load More!
-            </FixedButton>}
-          </section>
+          {loading ? <Loading className="large-bold"/> : <>
+            <List
+              list={list}
+              parentPath={path}
+            />
+            <section className="load-buttons">
+              {page > 1 && <ShortButton onClick={getPreviousData}>
+                <Return/>
+              </ShortButton>}
+              {(availablePages > 1 && page < availablePages) &&
+              <FixedButton onClick={getMoreData}>
+                Load More!
+              </FixedButton>}
+            </section>
+          </>}
         </>}
       </article>
   )

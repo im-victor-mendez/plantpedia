@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom"
 import CardContent from "../pages/CardContent/CardContent"
 import FindBy from "../pages/FindBy/FindBy"
 import Home from "../pages/Home/Home"
@@ -29,23 +30,27 @@ const Paths = Object.freeze([
 
 export const HomePaths = Object.freeze([
     {
-        name: 'forYou',
-        display: 'For You',
-        path: 'foryou',
-        // element: <ForYou/>
+        path: '*',
+        element: <Navigate to="findby" replace />
     },
-    {
-        name: 'discover',
-        display: 'Discover',
-        path: 'discover',
-        // element: <Discover/>
-    },
-    {
-        name: 'aroundYou',
-        display: 'Around You',
-        path: 'aroundyou',
-        // element: <AroundYou/>
-    },
+    // {
+    //     name: 'forYou',
+    //     display: 'For You',
+    //     path: 'foryou',
+    //     // element: <ForYou/>
+    // },
+    // {
+    //     name: 'discover',
+    //     display: 'Discover',
+    //     path: 'discover',
+    //     // element: <Discover/>
+    // },
+    // {
+    //     name: 'aroundYou',
+    //     display: 'Around You',
+    //     path: 'aroundyou',
+    //     // element: <AroundYou/>
+    // },
     {
         name: 'findby',
         display: 'Find By',

@@ -11,7 +11,7 @@ import apiUrl from "."
 export async function getPageContent(path, page = 1) {
     const url = `${apiUrl}${path}?page=${page}`
     const response = await fetch(url)
-    const data = await response.json()
+    const data = response.ok ? await response.json() : { error: true }
     return data
 }
 

@@ -13,7 +13,8 @@ import PropTypes from 'prop-types'
 function NavBar({ links }) {
     return (
         <nav className="nav-bar">
-            {links.map(item => <NavLink
+            {links.map(item => item.path != '*' &&
+            <NavLink
                 key={`nav-bar-${item.name}-key`}
                 className={`nav-link`}
                 to={item.path}
