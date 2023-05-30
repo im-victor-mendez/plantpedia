@@ -1,5 +1,8 @@
 @import '../../sass/colors';
 @import '../../sass/fonts';
+@import '../../sass/style';
+
+$padding: 10px;
 
 .card {
     @include card-text;
@@ -7,20 +10,18 @@
 
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
 
-    border-radius: 20px;
+    border-radius: $border-radius-large;
 
-    width: 160px;
+    width: calc(160px - $padding * 2);
+    padding: $padding;
 
     * {
         margin: 0;
     }
 
     img {
-        margin-top: 10px;
-
         border-radius: 20px;
         object-fit: cover;
 
@@ -32,7 +33,7 @@
 }
 
 .horizontal {
-    width: 335px;
+    width: calc(335px - $padding * 2);
 
     img {
         width: 100%;
@@ -40,11 +41,11 @@
 }
 
 .large {
-    height: 273px;
+    height: calc(273px - $padding * 2);
 }
 
 .medium {
-    height: 178.5px;
+    height: calc(178.5px - $padding * 2);
 
     img {
         max-height: 126px;
@@ -52,7 +53,7 @@
 }
 
 .short {
-    height: 131.5px;
+    height: calc(131.5px - $padding * 2);
 
     img {
         max-height: 79px;

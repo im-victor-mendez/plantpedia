@@ -1,0 +1,93 @@
+@import '../../sass/fonts';
+@import '../../sass/style';
+
+#landing {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    
+    * {
+        margin: 0px;
+    }
+    
+    .top {
+        @include bold-font(24px);
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        svg {
+            width: 42.14px;
+            height: 44px;
+        }
+    }
+}
+
+#information {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: -webkit-fill-available;
+
+    #welcome {
+        @include bold-font(22px);
+        text-align: center;
+    }
+
+    .start {
+        @include bold-font(22px);
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 0px 20px;
+
+        .start-message {
+            max-width: 200px;
+        }
+
+        .home-icon {
+            border-radius: 0px;
+        }
+    }
+}
+
+#sections {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .section {
+        @include regular-font(18px);
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            max-width: 160px;
+        }
+
+        img, svg {
+            width: 160px;
+            height: auto;
+            border-radius: $border-radius-large;
+        }
+
+        svg {
+            border-radius: 0px;
+        }
+    }
+
+    .section.reverse {
+        p {
+            text-align: end;
+        }
+    }
+}

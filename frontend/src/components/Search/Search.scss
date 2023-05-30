@@ -1,0 +1,48 @@
+@import '../../sass/colors';
+@import '../../sass/fonts';
+
+$clear-icon-size: 20px;
+
+$horizontal-padding: 20px;
+$vertical-padding: 15px;
+
+.search {
+    background-color: $light-gray;
+
+    display: flex;
+    gap: 20px;
+
+    max-width: calc(335px - $horizontal-padding * 2);
+    max-height: calc(70px - $vertical-padding * 2);
+
+    padding: $vertical-padding $horizontal-padding;
+    border-radius: 50px;
+
+    &:focus-within {
+        background-color: $gray;
+    }
+
+    input {
+        background-color: transparent;
+        color: $dark-gray;
+        
+        @include regular-font();
+        outline: none;
+
+        width: 235px;
+        height: 40px;
+        border: 0px;
+        padding: 0px;
+        
+        &::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+            appearance: none;
+            height: $clear-icon-size;
+            width: $clear-icon-size;
+            background-image: url(../../assets/svg/close.svg);
+            background-size: $clear-icon-size $clear-icon-size;
+            background-repeat: no-repeat;
+        }
+    }
+
+}

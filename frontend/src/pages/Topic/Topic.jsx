@@ -1,11 +1,14 @@
 import './Topic.scss'
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getPageContent } from "../../api/getPageContent"
+import { getPageContent, getSearchPageContent } from "../../api/getPageContent"
 import List from "../../layout/List/List"
 import Loading from "../../components/Loading/Loading"
 import { FixedButton, ShortButton } from "../../components/Button/Button"
 import { ReactComponent as Return } from '../../assets/svg/return.svg'
+import Search from '../../components/Search/Search'
+import { BackWithName } from '../../components/TopBar/TopBar'
+import Broken from '../../components/Broken/Broken'
 
 /**
  * Topic Page template
@@ -13,25 +16,49 @@ import { ReactComponent as Return } from '../../assets/svg/return.svg'
  * @returns {React.JSX.Element}
  */
 function Topic() {
-  const [loading, setLoading] = useState(true)
-  const [page, setPage] = useState(1)
-  const [list, setList] = useState([])
-
   const params = useParams()
   const { topicContent } = params
-  const topicPath = `/${topicContent}`
+
+  const path = `/${topicContent}`
+
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const [topicContentPath, setTopicContentPath] = useState('')
+  const [page, setPage] = useState(1)
+  const [availablePages, setAvailablePages] = useState()
+  const [list, setList] = useState([])
   
   useEffect(() => {
     setLoading(true)
+    setError(false)
 
-    getPageContent(topicPath, page)
+    if (topicContentPath.length >= 1 && topicContentPath != '')
+    getSearchPageContent(`${path}/${topicContentPath}`, page)
     .then(data => {
+      if (data.error) return setError(true)
       setLoading(false)
 
       const dataList = data.data
+      const total = data.meta.total
+      const dataAvailablePages = Math.round(total/dataList.length)
+      
       setList(dataList)
+      setAvailablePages(dataAvailablePages)
     })
-  }, [page, topicPath])
+
+    else
+    getPageContent(path, page)
+    .then(data => {
+      if (data.error) return setError(true)
+      setLoading(false)
+      
+      const dataList = data.data
+      const dataAvailablePages = Math.ceil(data.meta.total/dataList.length)
+
+      setList(dataList)
+      setAvailablePages(dataAvailablePages)
+    })
+  }, [topicContentPath, page])
 
   function scrollTopPage() {
     window.scrollTo({
@@ -42,34 +69,37 @@ function Topic() {
 
   function getMoreData() {
     scrollTopPage()
-
     setPage(previous => previous + 1)
   }
 
   function getPreviousData() {
     scrollTopPage()
-    
-    if (page == 1) return null
-    
     setPage(previous => previous - 1)
   }
 
-  if (loading) return <Loading className="large-bold"/>
-
   return (
       <article id={topicContent} className="topic">
-        <List
-          list={list}
-          parentPath={topicPath}
-        />
-        <section className="load-buttons">
-          <ShortButton onClick={getPreviousData}>
-            <Return/>
-          </ShortButton>
-          <FixedButton onClick={getMoreData}>
-            Load More!
-          </FixedButton>
-        </section>
+        <BackWithName name={topicContent} />
+        {error ? <Broken message={`Page in development 👷‍♂️`}/> : <>
+          <Search
+            search={setTopicContentPath}
+          />
+          {loading ? <Loading className="large-bold"/> : <>
+            <List
+              list={list}
+              parentPath={path}
+            />
+            <section className="load-buttons">
+              {page > 1 && <ShortButton onClick={getPreviousData}>
+                <Return/>
+              </ShortButton>}
+              {(availablePages > 1 && page < availablePages) &&
+              <FixedButton onClick={getMoreData}>
+                Load More!
+              </FixedButton>}
+            </section>
+          </>}
+        </>}
       </article>
   )
 }

@@ -1,0 +1,17 @@
+@import '../../sass/colors';
+@import '../../sass/fonts';
+
+.broken {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .icon {
+        width: 187.5px;
+        height: 195.78px;
+    }
+
+    .message {
+        @include title($black, 100%);
+    }
+}

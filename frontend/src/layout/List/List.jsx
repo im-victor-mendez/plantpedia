@@ -5,6 +5,7 @@ import MasonryComponent from "../../components/MasonryComponent/MasonryComponent
 import dictionary from '../../constants/dictionary'
 import { LargeCategory, ToggleCategory } from '../../components/Category/Category'
 import PropTypes from 'prop-types'
+import Broken from '../../components/Broken/Broken'
 
 /**
  * List layout
@@ -17,22 +18,24 @@ import PropTypes from 'prop-types'
 function List({ list, parentPath }) {
   return (
     <section className="list">
-      <MasonryComponent>
-        {list.map(item => {
-          const { id, slug, image_url, common_name } = item
-          
-          const childPath = `${parentPath}/${id}`
-          const type = getRandomDefaultCard()
-          
-          return <CardTextFixed
-            key={slug}
-            type={type}
-            path={childPath}
-            image={image_url}
-            name={common_name}
-          />
-        })}
-      </MasonryComponent>
+      {!list || list.length == 0 ? <Broken/> :
+        <MasonryComponent>
+          {list.map(item => {
+            const { id, slug, image_url, common_name, scientific_name } = item
+
+            const childPath = `${parentPath}/${id}`
+            const type = getRandomDefaultCard()
+            
+            return <CardTextFixed
+              key={slug}
+              type={type}
+              path={childPath}
+              image={image_url}
+              name={common_name || scientific_name}
+            />
+          })}
+        </MasonryComponent>
+      }
     </section>
   )
 }
