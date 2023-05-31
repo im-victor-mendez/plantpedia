@@ -17,16 +17,17 @@ function Search({ search }) {
   function handleKeyUp (event) {
     if (event.key === 'Enter') onClick()
   }
+  
+  function onClick() {
+    const whiteSpaceRegex = /^\s*$/
+    const condition = whiteSpaceRegex.test(input) || input == ''
+    search(!condition ? `search?q=${input}` : '')
+  }
 
   function handleChange(event) {
     const value = event.target.value
     setInput(value)
   }
-
-  function onClick() {
-    search(input ? `search?q=${input}` : '')
-  }
-
 
   return (
     <div className="search" onKeyUp={handleKeyUp}>

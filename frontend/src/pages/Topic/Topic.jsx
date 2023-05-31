@@ -7,7 +7,6 @@ import { getPageContent, getSearchPageContent } from "../../api/getPageContent"
 import List from "../../layout/List/List"
 import Loading from "../../components/Loading/Loading"
 import Search from '../../components/Search/Search'
-import Broken from '../../components/Broken/Broken'
 import { FixedButton, ShortButton } from "../../components/Button/Button"
 import { BackWithName } from '../../components/TopBar/TopBar'
 
@@ -25,7 +24,6 @@ function Topic() {
   const path = `/${topicContent}`
 
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
   const [topicContentPath, setTopicContentPath] = useState('')
   const [page, setPage] = useState(1)
   const [availablePages, setAvailablePages] = useState()
@@ -33,12 +31,8 @@ function Topic() {
   
   useEffect(() => {
     setLoading(true)
-    setError(false)
 
-    const whiteSpaceRegex = /^search\?q=\s*$/
-    const condition = whiteSpaceRegex.test(topicContentPath) || topicContentPath == ''
-    
-    if (!condition)
+    if (topicContentPath)
     getSearchPageContent(`${path}/${topicContentPath}`, page)
     .then(data => {
       setValues(data)
@@ -52,7 +46,6 @@ function Topic() {
   }, [topicContentPath, page])
 
   function setValues(data) {
-    if (data.error) return setError(true)
     setLoading(false)
 
     const dataList = data.data
@@ -82,7 +75,6 @@ function Topic() {
   return (
       <article id={topicContent} className="topic">
         <BackWithName name={topicContent} />
-        {error ? <Broken message={`Page in development 👷‍♂️`}/> : <>
           <Search
             search={setTopicContentPath}
           />
@@ -101,7 +93,6 @@ function Topic() {
               </FixedButton>}
             </section>
           </>}
-        </>}
       </article>
   )
 }
