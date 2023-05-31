@@ -16,3 +16,4 @@ $padding: 20px;
 }
 
 @include media-width-414px();
+@include desktop-media();

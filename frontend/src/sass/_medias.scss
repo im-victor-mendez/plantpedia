@@ -1,10 +1,11 @@
 @import './functions';
 @import './style';
+@import './fonts';
 
 @mixin media-width-414px() {
     @media (max-width: 414px) {
         #App {
-           width: get-real-size(100%, $app-padding);
+           width: get-real-size(100%, $app-mobile-padding);
         }
 
         #home,
@@ -22,6 +23,67 @@
                 input {
                     width: auto;
                 }
+            }
+        }
+    }
+}
+
+@mixin desktop-media() {
+    @media (min-width: 1000px) {
+        #root {
+            max-width: 1024px;
+        }
+
+        #App {
+            width: get-real-size(100%, $app-desktop-padding);
+
+            #landing {
+                .top {
+                    @include bold-font(36px);
+
+                    svg {
+                        width: auto;
+                        height: 60px;
+                    }
+                }
+            }
+
+            #information {
+                align-items: center;
+                
+                #sections {
+                    width: 800px;
+
+                    .section {
+                        height: 420px;
+
+                        p {
+                            width: auto;
+                            max-width: 400px;
+                        }
+
+                        img,
+                        svg {
+                            width: auto;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+
+            .start {
+                gap: 20px;
+            }
+        }
+
+        #menu {
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0px;
+
+            #menu-background {
+                width: 1024px;
             }
         }
     }
