@@ -40,3 +40,18 @@ export function getUrlPaged(url, page = 1) {
     const urlPaged = `${url}&page=${page}`
     return urlPaged
 }
+
+/**
+ * Get Available Pages
+ * @description Returns last link of an API endpoint as number
+ * @param {string} lastLink Last link of API endpoint
+ * @example getAvailablePages("/api/v1/species?page=24468"): 24468
+ * @returns {number}
+ */
+export function getAvailablePages(lastLink) {
+    const pageRegex = /page=(\d+)/
+    const pageMatch = lastLink.match(pageRegex)
+    const availablePages = pageMatch ? parseInt(pageMatch[1]) : null
+
+    return availablePages
+}
