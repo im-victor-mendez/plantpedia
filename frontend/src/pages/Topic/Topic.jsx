@@ -1,14 +1,17 @@
 import './Topic.scss'
+
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getPageContent, getSearchPageContent } from "../../api/getPageContent"
+
 import List from "../../layout/List/List"
 import Loading from "../../components/Loading/Loading"
-import { FixedButton, ShortButton } from "../../components/Button/Button"
-import { ReactComponent as Return } from '../../assets/svg/return.svg'
 import Search from '../../components/Search/Search'
-import { BackWithName } from '../../components/TopBar/TopBar'
 import Broken from '../../components/Broken/Broken'
+import { FixedButton, ShortButton } from "../../components/Button/Button"
+import { BackWithName } from '../../components/TopBar/TopBar'
+
+import { ReactComponent as Return } from '../../assets/svg/return.svg'
 
 /**
  * Topic Page template
@@ -32,33 +35,32 @@ function Topic() {
     setLoading(true)
     setError(false)
 
-    if (topicContentPath.length >= 1 && topicContentPath != '')
+    const whiteSpaceRegex = /^search\?q=\s*$/
+    const condition = whiteSpaceRegex.test(topicContentPath) || topicContentPath == ''
+    
+    if (!condition)
     getSearchPageContent(`${path}/${topicContentPath}`, page)
     .then(data => {
-      if (data.error) return setError(true)
-      setLoading(false)
-
-      const dataList = data.data
-      const total = data.meta.total
-      const dataAvailablePages = Math.round(total/dataList.length)
-      
-      setList(dataList)
-      setAvailablePages(dataAvailablePages)
+      setValues(data)
     })
 
     else
     getPageContent(path, page)
     .then(data => {
-      if (data.error) return setError(true)
-      setLoading(false)
-      
-      const dataList = data.data
-      const dataAvailablePages = Math.ceil(data.meta.total/dataList.length)
-
-      setList(dataList)
-      setAvailablePages(dataAvailablePages)
+      setValues(data)
     })
   }, [topicContentPath, page])
+
+  function setValues(data) {
+    if (data.error) return setError(true)
+    setLoading(false)
+
+    const dataList = data.data
+    const dataAvailablePages = data.available_page
+    
+    setList(dataList)
+    setAvailablePages(dataAvailablePages)
+  }
 
   function scrollTopPage() {
     window.scrollTo({
@@ -69,12 +71,12 @@ function Topic() {
 
   function getMoreData() {
     scrollTopPage()
-    setPage(previous => previous + 1)
+    setPage(page + 1)
   }
 
   function getPreviousData() {
     scrollTopPage()
-    setPage(previous => previous - 1)
+    setPage(page - 1)
   }
 
   return (
