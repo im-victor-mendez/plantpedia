@@ -4,6 +4,7 @@ import { getFindBy } from "./controllers/findBy.controller.mjs";
 const findByRouter = Router()
 const path = '/findby'
 
-findByRouter.use(path, getFindBy)
+// Get Find By content list
+findByRouter.get(path, getFindBy)
 
 export default findByRouter
