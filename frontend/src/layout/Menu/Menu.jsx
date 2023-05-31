@@ -14,11 +14,13 @@ import { Opened as OpenedTopBar } from "../../components/TopBar/TopBar"
  */
 function Menu({ closeMenu }) {
     return (
-      <section id='menu'>
-        <nav id='menu-list'>
-            <OpenedTopBar closeMenu={closeMenu}/>
-        </nav>
-      </section>
+      <main id='menu'>
+        <section id='menu-background'>
+          <nav id='menu-list'>
+              <OpenedTopBar closeMenu={closeMenu}/>
+          </nav>
+        </section>
+      </main>
   )
 }
 Menu.propTypes = {

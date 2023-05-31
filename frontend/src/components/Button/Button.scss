@@ -26,6 +26,12 @@ $padding: 20px;
     &:hover {
         background-color: $green;
         color: $white;
+        fill: $white;
+
+        * {
+            color: $white;
+            fill: $white;
+        }
     }
 }
 

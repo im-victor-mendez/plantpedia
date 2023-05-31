@@ -1,15 +1,12 @@
 @import '../../sass/colors';
 @import '../../sass/fonts';
-@import '../../sass/style.scss';
+@import '../../sass/style';
 
 $gap: 10px;
 
 $border-radius: $border-radius-small;
 
 $padding: 10px;
-$total-padding: $padding * 2;
-
-$width: 315px;
 
 $min-height: 43px;
 $max-height: 129px;
@@ -28,7 +25,7 @@ $max-height-text: 109px;
     padding: $padding;
     border-radius: $border-radius;
     
-    width: calc($width - $total-padding);
+    width: get-real-size(100%, $padding);
 
     * {
         margin: 0
@@ -45,7 +42,7 @@ $max-height-text: 109px;
 }
 
 .category-default {
-    height: calc($min-height - $total-padding);
+    height: get-real-size($min-height, $padding);
 
     .title {
         @include text($black, 140px);
@@ -66,7 +63,7 @@ $max-height-text: 109px;
 
 .category-large {
     height: 100%;
-    max-height: calc($max-height - $total-padding);
+    max-height: get-real-size($max-height, $padding);
     
     .title {
         @include text($black, 130px, 109px);
@@ -91,7 +88,7 @@ $max-height-text: 109px;
     align-items: flex-start;
     gap: $gap;
 
-    max-height: calc($toggle-max-height - $total-padding);
+    max-height: get-real-size($toggle-max-height, $padding);
 
     .top {
         display: flex;
@@ -117,7 +114,7 @@ $max-height-text: 109px;
 
 .category-toggle-content {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-between;
     gap: $gap;
 
@@ -146,8 +143,8 @@ $max-height-text: 109px;
 .value-default {
     background-color: $light-gray;
 
-    width: calc($width - $total-padding);
-    height: calc($min-height - $total-padding);
+    width: get-real-size(100%, $padding);
+    height: get-real-size($min-height, $padding);
     padding: $padding;
 
     .value {
@@ -159,7 +156,7 @@ $max-height-text: 109px;
     background-color: $light-gray;
 
     height: 100%;
-    max-height: calc($max-height - $total-padding);
+    max-height: get-real-size($max-height, $padding);
 
     .value {
         @include text($dark-green, 295px, 109px);
@@ -169,8 +166,8 @@ $max-height-text: 109px;
 .value-short {
     background-color: $light-gray;
 
-    width: calc(147.5px - $total-padding);
-    height: calc($min-height - $total-padding);
+    width: get-real-size(147.5px - $padding);
+    height: get-real-size($min-height - $padding);
     padding: $padding;
 
     .value {
