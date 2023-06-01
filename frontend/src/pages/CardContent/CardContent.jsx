@@ -5,6 +5,7 @@ import { useParams } from "react-router"
 import { ListCategories } from "../../layout/List/List"
 import { BackWithName } from '../../components/TopBar/TopBar'
 import Loading from '../../components/Loading/Loading'
+import { NoImageContent } from '../../components/NoImage/NoImage'
 
 /**
  * Card content
@@ -13,7 +14,6 @@ import Loading from '../../components/Loading/Loading'
  */
 function CardContent() {
     const [data, setData] = useState()
-    const name = data ? data.data.common_name : ''
 
     const params = useParams()
     const { topicContent, cardContent } = params
@@ -28,15 +28,17 @@ function CardContent() {
     }, [path])
     
     if (!data) return <Loading className="large-bold"/>
+
+    const { common_name, name, image_url } = data.data
     
     return (<>
-        <BackWithName name={name} />
+        <BackWithName name={common_name || name} />
 
         <article id={cardContent} className='card-content'>
-            <img
-                src={data.data.image_url}
+            {!image_url ? <NoImageContent/> : <img
+                src={image_url}
                 alt={`${name} image`}
-            />
+            />}
             <ListCategories categories={data.data} />
         </article>
     </>)

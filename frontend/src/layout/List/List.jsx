@@ -16,26 +16,34 @@ import Broken from '../../components/Broken/Broken'
  * @returns {React.JSX.Element}
  */
 function List({ list, parentPath }) {
+  if (!list || list.length == 0) return <Broken/>
+
   return (
     <section className="list">
-      {!list || list.length == 0 ? <Broken/> :
-        <MasonryComponent>
-          {list.map(item => {
-            const { id, slug, image_url, common_name, scientific_name } = item
+      <MasonryComponent>
+        {list.map(item => {
+          // Common
+          const { id, slug } = item
 
-            const childPath = `${parentPath}/${id}`
-            const type = getRandomDefaultCard()
-            
-            return <CardTextFixed
-              key={slug}
-              type={type}
-              path={childPath}
-              image={image_url}
-              name={common_name || scientific_name}
-            />
-          })}
-        </MasonryComponent>
-      }
+          // Plants and Species
+          const { common_name, scientific_name, image_url } = item
+
+          // Distributions
+          const { name } = item
+
+          const type = getRandomDefaultCard()
+          const childPath = `${parentPath}/${id}`
+          const nameToDisplay = common_name || scientific_name || name
+          
+          return <CardTextFixed
+            key={slug}
+            type={type}
+            path={childPath}
+            image={image_url}
+            name={nameToDisplay}
+          />
+        })}
+      </MasonryComponent>
     </section>
   )
 }
@@ -65,7 +73,7 @@ export function ListCategories({ categories, hideNull = true }) {
           'null': data == null,
           'empty_object': data != null && Object.keys(data).length == 0,
           'id': category == 'id',
-          'name': category == 'common_name',
+          'name': category == 'common_name' || category == 'name',
           'slug': category == 'slug',
           'id_main_species': category == 'main_species_id',
           'image': category == 'image_url',
