@@ -1,6 +1,6 @@
 import './List.scss'
 import { CardTextFixed } from "../../components/Card/Card"
-import { getRandomDefaultCard } from "../../components/Card/getCard"
+import { getRandomDefaultCard, getRandomHorizontalCard } from "../../components/Card/getCard"
 import MasonryComponent from "../../components/MasonryComponent/MasonryComponent"
 import dictionary from '../../constants/dictionary'
 import { LargeCategory, ToggleCategory } from '../../components/Category/Category'
@@ -31,7 +31,9 @@ function List({ list, parentPath }) {
           // Distributions
           const { name } = item
 
-          const type = getRandomDefaultCard()
+          const type = window.innerWidth < 375 ?
+            getRandomHorizontalCard() : getRandomDefaultCard()
+
           const childPath = `${parentPath}/${id}`
           const nameToDisplay = common_name || scientific_name || name
           

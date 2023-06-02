@@ -14,12 +14,14 @@ import NavBar from '../../layout/NavBar/NavBar'
  * @returns {React.JSX.Element}
  */
 function Home() {
-  const { toggle, activeToggle } = useToggle()
+  // const { toggle, activeToggle } = useToggle()
 
   return (
     <main id="home">
-      <DefaultTopBar openMenu={activeToggle} />
-      {toggle && <Menu closeMenu={activeToggle}/>}
+      <DefaultTopBar
+        // openMenu={activeToggle}
+      />
+      {/* {toggle && <Menu closeMenu={activeToggle}/>} */}
 
       <NavBar links={HomePaths}/>
       
