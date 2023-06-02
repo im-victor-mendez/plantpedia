@@ -14,3 +14,8 @@
     max-width: 315px;
     max-height: 220px;
 }
+
+.no-image.card-content {
+    width: auto;
+    max-width: none;
+}
