@@ -2,10 +2,48 @@
 @import './style';
 @import './fonts';
 
-@mixin media-width-414px() {
-    @media (max-width: 414px) {
+$max-width-mobile: 414px;
+$min-width-mobile: 360px;
+
+$max-width-tablet: 1280px;
+$min-width-tablet: 601px;
+
+$max-width-desktop: 1920px;
+$min-width-desktop: 1280px;
+
+@mixin small-mobile-media() {
+    @media (max-width: $min-width-mobile) {
+        #home,
+        .list {
+            .horizontal {
+                width: -webkit-fill-available;
+            }
+        }
+
+        .list {
+            .no-image {
+                width: auto;
+            }
+        }
+    }
+}
+
+@mixin tablet-media() {
+    @media (min-width: $max-width-mobile) {
+        #root {
+            max-width: $min-width-tablet;
+        }
+
         #App {
-           width: get-real-size(100%, $app-mobile-padding);
+            width: -webkit-fill-available;
+            max-width: none;
+
+            #information {
+                p {
+                    width: auto;
+                    max-width: 300px;
+                }
+            }
         }
 
         #home,
@@ -21,7 +59,8 @@
                 max-width: none;
 
                 input {
-                    width: auto;
+                    width: -webkit-fill-available;
+                    max-width: none;
                 }
             }
         }
@@ -29,17 +68,17 @@
 }
 
 @mixin desktop-media() {
-    @media (min-width: 1000px) {
+    @media (min-width: $min-width-desktop) {
         #root {
-            max-width: 1024px;
+            max-width: $max-width-tablet;
         }
 
         #App {
-            width: get-real-size(100%, $app-desktop-padding);
-
             #landing {
+                align-items: center;
                 .top {
                     @include bold-font(36px);
+                    width: 800px;
 
                     svg {
                         width: auto;
@@ -73,6 +112,31 @@
 
             .start {
                 gap: 20px;
+            }
+
+            .topic {
+                .search {
+                    max-width: 335px;
+                }
+            }
+
+            #find-by {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .card-content {
+                flex-direction: row;
+    
+                img,
+                .no-image {
+                    width: 605px;
+                    height: fit-content;
+                }
+    
+                .list-categories {
+                    width: 605px;
+                }
             }
         }
 

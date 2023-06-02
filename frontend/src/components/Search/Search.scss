@@ -12,7 +12,6 @@ $vertical-padding: 15px;
     display: flex;
     gap: 20px;
 
-    max-width: calc(335px - $horizontal-padding * 2);
     max-height: calc(70px - $vertical-padding * 2);
 
     padding: $vertical-padding $horizontal-padding;
@@ -22,6 +21,10 @@ $vertical-padding: 15px;
         background-color: $gray;
     }
 
+    svg {
+        min-width: 40px;
+    }
+
     input {
         background-color: transparent;
         color: $dark-gray;
@@ -29,7 +32,7 @@ $vertical-padding: 15px;
         @include regular-font();
         outline: none;
 
-        max-width: 235px;
+        width: 100%;
         height: 40px;
         border: 0px;
         padding: 0px;
